@@ -1,0 +1,11 @@
+<% include partials/header %>
+<h1>Welcome to YelpCamp</h1>
+<p>View our hand-picked campgrounds from all over the world</p>
+
+
+<% campgrounds.forEach(function(campground){ %>
+    <img src="<%= campground.image %>" alt="Campground Image">
+    <h4>  <%= campground["name"] %> </h4>
+<% }); %>
+
+<% include partials/footer %>
