@@ -1,6 +1,7 @@
 var express         = require("express"),
     app             = express();
     request         = require("request"),
+    methodOverride  = require("method-override"),
     bodyParser      = require("body-parser"),
     passport        = require("passport"),
     LocalStrategy   = require("passport-local"),
@@ -17,9 +18,12 @@ var campgroundRoutes = require("./routes/campgrounds"),
 
 // ===== App CONFIG =====
 mongoose.connect("mongodb://localhost/yelp_camp", { useNewUrlParser: true});
+mongoose.set('useFindAndModify', false);
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
+app.use(methodOverride("_method"));
 app.set("view engine", "ejs");
+
 // seedDB();
 var port = process.env.PORT || 3000;
 
