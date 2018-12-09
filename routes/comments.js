@@ -65,6 +65,18 @@ router.put("/:comment_id", function(req, res){
     });
 });
 
+// DESTROY ROUTE - delete a comment
+router.delete("/:comment_id", function(req, res){
+    Comment.findByIdAndRemove(req.params.comment_id, function(err){
+        if (err) {
+            console.log(err);
+            res.redirect("back");
+        } else {
+            res.redirect("/campgrounds/" + req.params.id);
+        }
+    });
+});
+
 // isLoggedIn middleware
 function isLoggedIn(req, res, next){
     if (req.isAuthenticated()){

@@ -1,3 +1,7 @@
+.delete-form{
+    display: inline;
+}
+
 .thumbnail img {
     width: 100%;
 }
@@ -6,6 +10,3 @@
     padding: 0;
 }
 
-#delete-form{
-    display: inline;
-}

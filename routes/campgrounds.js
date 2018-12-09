@@ -68,7 +68,7 @@ router.put("/:id", isAuthorized, function(req, res){
 router.delete("/:id", isAuthorized, function(req, res){
     Campground.findByIdAndRemove(req.params.id, function(err){
         if (err) {
-            res.redirect("/campgrounds");
+            res.redirect("back");
         } else {
             res.redirect("/campgrounds");
         }
