@@ -47,14 +47,14 @@ router.get("/:id", function(req, res){
 });
 
 // EDIT - edit form to change campground
-router.get("/:id/edit", isAuthorized, function(req, res){
+router.get("/:id/edit", isOwnerofCampground, function(req, res){
     Campground.findById(req.params.id, function(err, foundCampground){
         res.render("campgrounds/edit", {campground: foundCampground});       
     });  
 });
 
 // UPDATE - post request to change campground
-router.put("/:id", isAuthorized, function(req, res){
+router.put("/:id", isOwnerofCampground, function(req, res){
     Campground.findByIdAndUpdate(req.params.id, req.body.campground, function(err, updatedCampground){
        if(err){
            res.redirect("/campgrounds");
@@ -65,7 +65,7 @@ router.put("/:id", isAuthorized, function(req, res){
 });
 
 // DESTROY - delete a campground
-router.delete("/:id", isAuthorized, function(req, res){
+router.delete("/:id", isOwnerofCampground, function(req, res){
     Campground.findByIdAndRemove(req.params.id, function(err){
         if (err) {
             res.redirect("back");
@@ -84,7 +84,7 @@ function isLoggedIn(req, res, next){
 }
 
 // middleware: check if user owns the campground
-function isAuthorized(req, res, next){
+function isOwnerofCampground(req, res, next){
     if (req.isAuthenticated()){
         Campground.findById(req.params.id, function(err, foundCampground){
             if (err) {
