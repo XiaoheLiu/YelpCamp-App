@@ -1,6 +1,6 @@
 # YelpCamp App
 
-A full stack Node.js web app for sharing and discovering new campgrounds all over the world.
+A full stack Node.js web app for sharing and discovering new campgrounds from all over the world.
 
 ## Features
 - __User authorization:__ Signup/Login/Logout logics.
