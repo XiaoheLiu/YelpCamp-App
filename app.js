@@ -55,11 +55,6 @@ app.use(function(req, res, next){
 app.use("/", indexRoutes);
 app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/comments",commentRoutes);
-// Visiting any other route
-app.get("*", function(req, res){
-    req.flash("error", "Sorry, page not found.")
-    res.render("landing"); 
-  });
 
 // Start Server
 app.listen(port, function(err, res){
