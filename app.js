@@ -7,6 +7,7 @@ var express         = require("express"),
     LocalStrategy   = require("passport-local"),
     mongoose        = require("mongoose"),
     flash           = require("connect-flash"),
+    moment          = require("moment"),
     Campground      = require("./models/campground"),
     Comment         = require("./models/comment"),
     User            = require("./models/user")
@@ -17,6 +18,8 @@ var campgroundRoutes = require("./routes/campgrounds"),
     commentRoutes    = require("./routes/comments"),
     indexRoutes      = require("./routes/index");
 
+var port = process.env.PORT || 3000;
+
 // ===== App CONFIG =====
 mongoose.connect("mongodb://localhost/yelp_camp", { useNewUrlParser: true});
 mongoose.set('useFindAndModify', false);
@@ -25,9 +28,7 @@ app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(flash());
 app.set("view engine", "ejs");
-
 // seedDB();
-var port = process.env.PORT || 3000;
 
 // ===== Passport CONFIG =====
 app.use(require("express-session")({
@@ -45,6 +46,7 @@ app.use(function(req, res, next){
     res.locals.currentUser = req.user;
     res.locals.error = req.flash("error");
     res.locals.success = req.flash("success");
+    res.locals.moment = moment;
     next();
 }); // pass "currentUser: req.user" as local var to every route
 
@@ -52,6 +54,11 @@ app.use(function(req, res, next){
 app.use("/", indexRoutes);
 app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/comments",commentRoutes);
+// Visiting any other route
+app.get("*", function(req, res){
+    req.flash("error", "Sorry, page not found.")
+    res.render("landing"); 
+  });
 
 // Start Server
 app.listen(port, function(err, res){
