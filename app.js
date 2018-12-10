@@ -27,11 +27,11 @@ var port = process.env.PORT || 3000,
 // ===== App CONFIG =====
 mongoose.connect(process.env.DATABASEURL, {useNewUrlParser: true});
 mongoose.set('useFindAndModify', false);
+app.use(favicon(path.join(__dirname,'public','images','favicon.ico')));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(flash());
-app.use(favicon(path.join(__dirname,'public','images','favicon.ico')));
 app.set("view engine", "ejs");
 // seedDB();
 
