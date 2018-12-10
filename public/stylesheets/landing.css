@@ -9,13 +9,19 @@ body {
     padding-top: 40vh;
 }
 
+#landing-header h1, h3 {
+  text-shadow: 0px 4px 3px rgb(0,0,0,0.4),
+  0px 8px 13px rgb(0,0,0,0.2),
+  0px 18px 23px rgb(0,0,0,0.1);
+}
+
 #landing-header h1{
     color: #fff;
     font-size: 3em;
 }
 
 #landing-header h4{
-    color: rgba(211, 211, 211, 0.932);
+    color: whitesmoke;
     margin-top: 3vh;
 }
 
