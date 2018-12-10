@@ -21,7 +21,8 @@ var campgroundRoutes = require("./routes/campgrounds"),
 var port = process.env.PORT || 3000;
 
 // ===== App CONFIG =====
-mongoose.connect("mongodb://localhost/yelp_camp", { useNewUrlParser: true});
+// mongoose.connect("mongodb://localhost/yelp_camp", { useNewUrlParser: true});
+mongoose.connect("mongodb://athenaliu:yelpcamp2018@ds123664.mlab.com:23664/yelpcampdatabase", {useNewUrlParser: true});
 mongoose.set('useFindAndModify', false);
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
