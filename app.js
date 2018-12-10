@@ -8,6 +8,8 @@ var express         = require("express"),
     mongoose        = require("mongoose"),
     flash           = require("connect-flash"),
     moment          = require("moment"),
+    path            = require("path"),
+    favicon         = require('serve-favicon'),
     Campground      = require("./models/campground"),
     Comment         = require("./models/comment"),
     User            = require("./models/user")
@@ -29,6 +31,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(flash());
+app.use(favicon(path.join(__dirname,'public','images','favicon.ico')));
 app.set("view engine", "ejs");
 // seedDB();
 
